@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,7 +13,7 @@ public class Screen extends JPanel implements Runnable, KeyListener
 {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private JFrame f;
 
 	public static final int WIDTH = 500, HEIGHT = 500;
@@ -25,7 +26,7 @@ public class Screen extends JPanel implements Runnable, KeyListener
 
 	private Apple apple;
 	private ArrayList<Apple> apples;
-	
+
 	private PowerUp poUp;
 	private ArrayList<PowerUp> powerUp;
 
@@ -36,11 +37,14 @@ public class Screen extends JPanel implements Runnable, KeyListener
 
 	private boolean right = true, left = false, up = false, down = false;
 
+	private JPanel endGameName;
+	private JLabel gameOverText;
+
 	private int ticks = 0;
 
 	public Screen()
 	{
-		 f = new JFrame();
+		f = new JFrame();
 		setFocusable(true);
 
 		addKeyListener(this);
@@ -49,7 +53,9 @@ public class Screen extends JPanel implements Runnable, KeyListener
 		r = new Random();
 		xCoord = r.nextInt(39);
 		yCoord = r.nextInt(39);
-		
+
+		endGameName = new JPanel();
+
 		snakeBody = new ArrayList<Body>();
 		apples = new ArrayList<Apple>();
 		powerUp = new ArrayList<PowerUp>();
@@ -71,16 +77,15 @@ public class Screen extends JPanel implements Runnable, KeyListener
 			apple = new Apple(xCoor, yCoor, 10);
 			apples.add(apple);
 		}
-		if(powerUp.size() == 0)
+		if (powerUp.size() == 0)
 		{
 			int xCoor = r.nextInt(39);
 			int yCoor = r.nextInt(39);
-			
-			poUp = new PowerUp(xCoor, yCoor, 10);
+
+			poUp = new PowerUp(xCoor, yCoord, 10);
 			powerUp.add(poUp);
 		}
-		
-		
+
 		for (int i = 0; i < apples.size(); i++)
 		{
 			if (xCoord == apples.get(i).getXCoord() && yCoord == apples.get(i).getYCoord())
@@ -90,38 +95,34 @@ public class Screen extends JPanel implements Runnable, KeyListener
 				i++;
 			}
 		}
-		
+
 		for (int i = 0; i < powerUp.size(); i++)
 		{
+			// 0...1000 Inclusive
+			int rand = r.nextInt(1001);
 			if (xCoord == powerUp.get(i).getXCoord() && yCoord == powerUp.get(i).getYCoord())
 			{
-				// 0...1000 Inclusive
-				int rand = r.nextInt(1001);
-				
-				if(rand % 2 == 0) //Good PowerUp
+				if (rand < 200)
 				{
+					powerUp.remove(0);
 					snakeBody.remove(0);
 					size--;
+					i++;
 				}
-				else if(rand == 526) //Very Bad PowerUp
+				else
 				{
-					
+					size++;
+					powerUp.remove(i);
+					i++;
 				}
-				else //Bad PowerUp
-				{
-					
-				}
-				
-				powerUp.remove(i);
-				i++;
 			}
 		}
-		
+
 		for (int i = 0; i < snakeBody.size(); i++)
 		{
 			if (xCoord == snakeBody.get(i).getXCoord() && yCoord == snakeBody.get(i).getYCoord())
 			{
-				if (i != snakeBody.size()-1)
+				if (i != snakeBody.size() - 1)
 				{
 					stop();
 				}
@@ -134,8 +135,7 @@ public class Screen extends JPanel implements Runnable, KeyListener
 
 		ticks++;
 
-		
-		if (ticks > 1000000)
+		if (ticks > 790999)
 		{
 			if (right)
 				xCoord++;
@@ -163,7 +163,7 @@ public class Screen extends JPanel implements Runnable, KeyListener
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
-		
+
 		for (int i = 0; i < WIDTH / 10; i++)
 		{
 			g.drawLine(i * 10, 0, i * 10, HEIGHT);
@@ -181,7 +181,7 @@ public class Screen extends JPanel implements Runnable, KeyListener
 		{
 			apples.get(i).drawApple(g);
 		}
-		for(int i = 0; i < powerUp.size(); i++)
+		for (int i = 0; i < powerUp.size(); i++)
 		{
 			powerUp.get(i).drawPowerUps(g);
 		}
@@ -198,15 +198,20 @@ public class Screen extends JPanel implements Runnable, KeyListener
 	public void stop()
 	{
 		running = false;
+
 		try
 		{
 			thread.join();
-		} 
-		catch (InterruptedException e)
+		} catch (InterruptedException e)
 		{
 			e.printStackTrace();
-			//running = false;
+			// running = false;
 		}
+	}
+
+	public boolean getRunning()
+	{
+		return running;
 	}
 
 	public void run()
@@ -251,11 +256,11 @@ public class Screen extends JPanel implements Runnable, KeyListener
 	@Override
 	public void keyReleased(KeyEvent arg0)
 	{
-		
+
 	}
 
 	public void keyTyped(KeyEvent arg0)
 	{
-		
+
 	}
 }
