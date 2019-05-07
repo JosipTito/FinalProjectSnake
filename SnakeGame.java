@@ -99,7 +99,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 			int rand = r.nextInt(1001);
 			if (xCoord == powerUp.get(i).getXCoord() && yCoord == powerUp.get(i).getYCoord())
 			{
-				if (rand < 301 && size > 4) //Good powerUp, decreases your length by 4.
+				if (rand < 301 && size > 4)          //Good powerUp, decreases your length by 4.
 				{
 					snakeBody.remove(3);
 					snakeBody.remove(2);
@@ -109,20 +109,20 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 					powerUp.remove(0);
 					i++;
 				}
-				else if(rand < 501 && rand > 300) // Bad powerUp, increases your length by 4.
+				else if(rand < 501 && rand > 300)     // Bad powerUp, increases your length by 4.
 				{
 					size += 4;
 					powerUp.remove(0);
 					i++;
 				}
-			    else if(rand > 500 && rand < 751) // Bad powerUp, increases speed by 20%
+			    else if(rand > 500 && rand < 751)         // Bad powerUp, increases speed by 20%
 				{
 					increment += .2;
 					powerUp.remove(0);
 					i++;
 					
 				}
-				else if(rand > 750 && increment > .5)                           //Good powerUp, decreases speed by 20%
+				else if(rand > 750 && increment > .5)  //Good powerUp, decreases speed by 20%
 				{
 					increment -= .2;
 					powerUp.remove(0);
