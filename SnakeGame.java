@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SnakeGame extends JPanel implements Runnable, KeyListener
+public class SnakeGameSinglePlay extends JPanel implements Runnable, KeyListener
 {
 
 	private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 
 	private int ticks = 0;
 
-	public SnakeGame()
+	public SnakeGameSinglePlay()
 	{
 		f = new JFrame();
 		setFocusable(true);
