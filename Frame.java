@@ -10,7 +10,7 @@ public class FrameSinglePlay {
 
         frame.add(screen);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Snake");
+        frame.setTitle("Snake Single Player Edition");
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
