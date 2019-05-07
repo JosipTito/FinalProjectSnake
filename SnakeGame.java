@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SnakeGameSinglePlay extends JPanel implements Runnable, KeyListener
+public class SnakeGame extends JPanel implements Runnable, KeyListener
 {
 
 	private static final long serialVersionUID = 1L;
@@ -37,9 +37,10 @@ public class SnakeGameSinglePlay extends JPanel implements Runnable, KeyListener
 
 	private boolean right = true, left = false, up = false, down = false;
 
-	private int ticks = 0;
+	private double increment = 1;
+	private double ticks = 0;
 
-	public SnakeGameSinglePlay()
+	public SnakeGame()
 	{
 		f = new JFrame();
 		setFocusable(true);
@@ -67,18 +68,18 @@ public class SnakeGameSinglePlay extends JPanel implements Runnable, KeyListener
 		}
 		if (apples.size() == 0)
 		{
-			int xCoor = r.nextInt(39);
-			int yCoor = r.nextInt(39);
+			int xCoor = r.nextInt(48);
+			int yCoor = r.nextInt(48);
 
 			apple = new Apple(xCoor, yCoor, 10);
 			apples.add(apple);
 		}
 		if (powerUp.size() == 0)
 		{
-			int xCoor = r.nextInt(39);
-			int yCoor = r.nextInt(39);
+			int xCoor = r.nextInt(48);
+			int yCoor = r.nextInt(48);
 
-			poUp = new PowerUp(xCoor, yCoord, 10);
+			poUp = new PowerUp(xCoor, yCoor, 10);
 			powerUp.add(poUp);
 		}
 
@@ -86,7 +87,7 @@ public class SnakeGameSinglePlay extends JPanel implements Runnable, KeyListener
 		{
 			if (xCoord == apples.get(i).getXCoord() && yCoord == apples.get(i).getYCoord())
 			{
-				size+=10;
+				size+=2;
 				apples.remove(i);
 				i++;
 			}
@@ -98,17 +99,36 @@ public class SnakeGameSinglePlay extends JPanel implements Runnable, KeyListener
 			int rand = r.nextInt(1001);
 			if (xCoord == powerUp.get(i).getXCoord() && yCoord == powerUp.get(i).getYCoord())
 			{
-				if (rand < 200)
+				if (rand < 301 && size > 4) //Good powerUp, decreases your length by 4.
 				{
-					powerUp.remove(0);
+					snakeBody.remove(3);
+					snakeBody.remove(2);
+					snakeBody.remove(1);
 					snakeBody.remove(0);
-					size--;
-					i++;
-				} else
-				{
-					powerUp.remove(i);
+					size -= 4;
+					powerUp.remove(0);
 					i++;
 				}
+				else if(rand < 501 && rand > 300) // Bad powerUp, increases your length by 4.
+				{
+					size += 4;
+					powerUp.remove(0);
+					i++;
+				}
+			    else if(rand > 500 && rand < 751) // Bad powerUp, increases speed by 20%
+				{
+					increment += .2;
+					powerUp.remove(0);
+					i++;
+					
+				}
+				else if(rand > 750 && increment > .5)                           //Good powerUp, decreases speed by 20%
+				{
+					increment -= .2;
+					powerUp.remove(0);
+					i++;
+				}
+				
 			}
 		}
 
@@ -127,7 +147,7 @@ public class SnakeGameSinglePlay extends JPanel implements Runnable, KeyListener
 			stop();
 		}
 
-		ticks++;
+		ticks+= increment;
 
 		if (ticks > 790999)
 		{
