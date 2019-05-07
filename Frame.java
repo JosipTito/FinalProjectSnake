@@ -1,8 +1,8 @@
 import javax.swing.JFrame;
 
-public class Frame {
+public class FrameSinglePlay {
 
-    public Frame() 
+    public FrameSinglePlay() 
     {
         JFrame frame = new JFrame();
         SnakeGame screen = new SnakeGame();
