@@ -31,10 +31,11 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 	private Random r;
 
 	private int xCoord, yCoord, xCoord2, yCoord2;
-	private int size = 5;
+	private int size = 5, size2 = 5;
 
 	private boolean right = true, left = false, up = false, down = false;
 	private boolean right2 = true, left2 = false, up2 = false, down2 = false;
+	private boolean snake1Wins = false, snake2Wins = false;
 
 	private double increment = 1;
 	private double ticks = 0;
@@ -65,6 +66,11 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 			b = new Body(xCoord, yCoord, 10);
 			snakeBody.add(b);
 		}
+		if(snakeBody2.size() == 0)
+		{
+			b2 = new Body(xCoord, yCoord, 10);
+			snakeBody2.add(b2);
+		}
 		if (apples.size() == 0)
 		{
 			int xCoor = r.nextInt(48);
@@ -87,6 +93,16 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 			if (xCoord == apples.get(i).getXCoord() && yCoord == apples.get(i).getYCoord())
 			{
 				size+=2;
+				apples.remove(i);
+				i++;
+			}
+		}
+		
+		for (int i = 0; i < apples.size(); i++)
+		{
+			if (xCoord2 == apples.get(i).getXCoord() && yCoord2 == apples.get(i).getYCoord())
+			{
+				size2+=2;
 				apples.remove(i);
 				i++;
 			}
@@ -114,7 +130,7 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 					powerUp.remove(0);
 					i++;
 				}
-			   /* else if(rand == 2) // Bad powerUp, increases speed by 20%
+			    /*else if(rand == 2) // Bad powerUp, increases speed by 20%
 				{
 					increment += .2;
 					powerUp.remove(0);
@@ -130,6 +146,45 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 				
 			}
 		}
+		
+		for (int i = 0; i < powerUp.size(); i++)
+		{
+			// 0...1000 Inclusive
+			int rand = r.nextInt(4);
+			if (xCoord2 == powerUp.get(i).getXCoord() && yCoord2 == powerUp.get(i).getYCoord())
+			{
+				if (rand == 0 && size > 4) //Good powerUp, decreases your length by 4.
+				{
+					snakeBody2.remove(3);
+					snakeBody2.remove(2);
+					snakeBody2.remove(1);
+					snakeBody2.remove(0);
+					size2 -= 4;
+					powerUp.remove(0);
+					i++;
+				}
+				else if(rand == 1) // Bad powerUp, increases your length by 4.
+				{
+					size2 += 4;
+					powerUp.remove(0);
+					i++;
+				}
+			    /*else if(rand == 2) // Bad powerUp, increases speed by 20%
+				{
+					increment += .2;
+					powerUp.remove(0);
+					i++;
+					
+				}
+				else if(rand == 3 && increment > .5) //Good powerUp, decreases speed by 20%
+				{
+					increment -= .2;
+					powerUp.remove(0);
+					i++;
+				}
+				*/
+			}
+		}
 
 		for (int i = 0; i < snakeBody.size(); i++)
 		{
@@ -137,12 +192,57 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 			{
 				if (i != snakeBody.size() - 1)
 				{
+					snake2Wins = true;
 					stop();
 				}
 			}
 		}
+		
+		for(int i = 0; i < snakeBody.size(); i++)
+		{
+			if (xCoord2 == snakeBody.get(i).getXCoord() && yCoord2 == snakeBody.get(i).getYCoord())
+			{
+				if (i != snakeBody.size() - 1)
+				{
+					snake1Wins = true;
+					stop();
+				}
+			}
+		}
+		
+		for (int i = 0; i < snakeBody.size(); i++)
+		{
+			if (xCoord2 == snakeBody2.get(i).getXCoord() && yCoord2 == snakeBody2.get(i).getYCoord())
+			{
+				if (i != snakeBody2.size() - 1)
+				{
+					snake1Wins = true;
+					stop();
+				}
+			}
+		}
+		
+		for(int i = 0; i < snakeBody.size(); i++)
+		{
+			if (xCoord == snakeBody2.get(i).getXCoord() && yCoord == snakeBody2.get(i).getYCoord())
+			{
+				if (i != snakeBody2.size() - 1)
+				{
+					snake2Wins = true;
+					stop();
+				}
+			}
+		}
+		
 		if (xCoord < 0 || xCoord > 48 || yCoord < 0 || yCoord > 48)
 		{
+			snake2Wins = true;
+			stop();
+		}
+		
+		if (xCoord2 < 0 || xCoord2 > 48 || yCoord2 < 0 || yCoord2 > 48)
+		{
+			snake1Wins = true;
 			stop();
 		}
 
@@ -204,6 +304,10 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 		for (int i = 0; i < snakeBody.size(); i++)
 		{
 			snakeBody.get(i).draw(g);
+		}
+		for(int i = 0; i < snakeBody2.size(); i++)
+		{
+			snakeBody2.get(i).draw(g);
 		}
 		for (int i = 0; i < apples.size(); i++)
 		{
