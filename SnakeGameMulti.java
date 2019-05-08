@@ -19,8 +19,8 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 
 	private Body b;
 	private ArrayList<Body> snakeBody;
-	private Body b2;
-	private ArrayList<Body> snakeBody2;
+	private Body2 b2;
+	private ArrayList<Body2> snakeBody2;
 
 	private Apple apple;
 	private ArrayList<Apple> apples;
@@ -53,7 +53,7 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 
 
 		snakeBody = new ArrayList<Body>();
-		snakeBody2 = new ArrayList<Body>();
+		snakeBody2 = new ArrayList<Body2>();
 		apples = new ArrayList<Apple>();
 		powerUp = new ArrayList<PowerUp>();
 		start();
@@ -63,12 +63,12 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 	{
 		if (snakeBody.size() == 0)
 		{
-			b = new Body(xCoord, yCoord, 10);
+			b = new Body(50, 45, 10);
 			snakeBody.add(b);
 		}
 		if(snakeBody2.size() == 0)
 		{
-			b2 = new Body(xCoord, yCoord, 10);
+			b2 = new Body2(50, 450, 10);
 			snakeBody2.add(b2);
 		}
 		if (apples.size() == 0)
@@ -276,12 +276,16 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 			b = new Body(xCoord, yCoord, 10);
 			snakeBody.add(b);
 			//Second Snake
-			b2 = new Body(xCoord2, yCoord2, 10);
+			b2 = new Body2(xCoord2, yCoord2, 10);
 			snakeBody2.add(b2);
 
 			if (snakeBody.size() > size)
 			{
 				snakeBody.remove(0);
+			}
+			if(snakeBody2.size() > size2) 
+			{
+				snakeBody2.remove(0);
 			}
 		}
 	}
@@ -399,13 +403,13 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 			down2 = false;
 			left2 = true;
 		}
-		if(key == KeyEvent.VK_W && !down)
+		if(key == KeyEvent.VK_W && !down2)
 		{
 			left2 = false;
 			right2 = false;
 			up2 = true;
 		}
-		if(key == KeyEvent.VK_S && !up)
+		if(key == KeyEvent.VK_S && !up2)
 		{
 			left2 = false;
 			right2 = false;
