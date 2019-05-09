@@ -88,17 +88,17 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 			powerUp.add(poUp);
 		}
 
-			if (xCoord == apples.get(0).getXCoord() && yCoord == apples.get(0).getYCoord())
-			{
-				size+=2;
-				apples.remove(0);
-			}
+		if (xCoord == apples.get(0).getXCoord() && yCoord == apples.get(0).getYCoord())
+		{
+			size+=2;
+			apples.remove(0);
+		}
 		
-			if (xCoord2 == apples.get(0).getXCoord() && yCoord2 == apples.get(0).getYCoord())
-			{
-				size2+=2;
-				apples.remove(0);
-			}
+		if (xCoord2 == apples.get(0).getXCoord() && yCoord2 == apples.get(0).getYCoord())
+		{
+			size2+=2;
+			apples.remove(0);
+		}
 
 		for (int i = 0; i < powerUp.size(); i++)
 		{
