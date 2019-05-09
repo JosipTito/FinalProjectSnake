@@ -1,4 +1,5 @@
 import javax.swing.JPanel;
+import import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -93,8 +94,7 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 			size+=2;
 			apples.remove(0);
 		}
-		
-		if (xCoord2 == apples.get(0).getXCoord() && yCoord2 == apples.get(0).getYCoord())
+		else if (xCoord2 == apples.get(0).getXCoord() && yCoord2 == apples.get(0).getYCoord())
 		{
 			size2+=2;
 			apples.remove(0);
@@ -103,38 +103,15 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 		for (int i = 0; i < powerUp.size(); i++)
 		{
 			// 0...1000 Inclusive
-			int rand = r.nextInt(4);
+			int rand = r.nextInt(2);
 			if (xCoord == powerUp.get(i).getXCoord() && yCoord == powerUp.get(i).getYCoord())
 			{
-				if (rand == 0 && size > 4) //Good powerUp, decreases your length by 4.
-				{
-					snakeBody.remove(3);
-					snakeBody.remove(2);
-					snakeBody.remove(1);
-					snakeBody.remove(0);
-					size -= 4;
-					powerUp.remove(0);
-					i++;
-				}
-				else if(rand == 1) // Bad powerUp, increases your length by 4.
+				if(rand == 1) // Bad powerUp, increases your length by 4.
 				{
 					size += 4;
 					powerUp.remove(0);
 					i++;
 				}
-			    /*else if(rand == 2) // Bad powerUp, increases speed by 20%
-				{
-					increment += .2;
-					powerUp.remove(0);
-					i++;
-					
-				}
-				else if(rand == 3 && increment > .5) //Good powerUp, decreases speed by 20%
-				{
-					increment -= .2;
-					powerUp.remove(0);
-					i++;
-				}*/
 				
 			}
 		}
@@ -142,42 +119,19 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 		for (int i = 0; i < powerUp.size(); i++)
 		{
 			// 0...1000 Inclusive
-			int rand = r.nextInt(4);
+			int rand = r.nextInt(2);
 			if (xCoord2 == powerUp.get(i).getXCoord() && yCoord2 == powerUp.get(i).getYCoord())
 			{
-				if (rand == 0 && size2 > 4) //Good powerUp, decreases your length by 4.
-				{
-					snakeBody2.remove(3);
-					snakeBody2.remove(2);
-					snakeBody2.remove(1);
-					snakeBody2.remove(0);
-					size2 -= 4;
-					powerUp.remove(0);
-					i++;
-				}
-				else if(rand == 1) // Bad powerUp, increases your length by 4.
+				if(rand == 1) // Bad powerUp, increases your length by 4.
 				{
 					size2 += 4;
 					powerUp.remove(0);
 					i++;
 				}
-			    /*else if(rand == 2) // Bad powerUp, increases speed by 20%
-				{
-					increment += .2;
-					powerUp.remove(0);
-					i++;
-					
-				}
-				else if(rand == 3 && increment > .5) //Good powerUp, decreases speed by 20%
-				{
-					increment -= .2;
-					powerUp.remove(0);
-					i++;
-				}
-				*/
 			}
 		}
 
+		//If snake1 hits itself
 		for (int i = 0; i < snakeBody.size(); i++)
 		{
 			if (xCoord == snakeBody.get(i).getXCoord() && yCoord == snakeBody.get(i).getYCoord())
@@ -190,6 +144,7 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 			}
 		}
 		
+		//If snake2 hits snake1
 		for(int i = 0; i < snakeBody.size(); i++)
 		{
 			if (xCoord2 == snakeBody.get(i).getXCoord() && yCoord2 == snakeBody.get(i).getYCoord())
@@ -202,7 +157,8 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 			}
 		}
 		
-		for (int i = 0; i < snakeBody.size(); i++)
+		//If snake2 hits itself
+		for (int i = 0; i < snakeBody2.size(); i++)
 		{
 			if (xCoord2 == snakeBody2.get(i).getXCoord() && yCoord2 == snakeBody2.get(i).getYCoord())
 			{
@@ -214,7 +170,8 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 			}
 		}
 		
-		for(int i = 0; i < snakeBody.size(); i++)
+		//If snake1 hits snake2
+		for(int i = 0; i < snakeBody2.size(); i++)
 		{
 			if (xCoord == snakeBody2.get(i).getXCoord() && yCoord == snakeBody2.get(i).getYCoord())
 			{
@@ -240,7 +197,7 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 
 		ticks+= increment;
 
-		if (ticks > 790999)
+		if (ticks > 690999)
 		{
 		//First Snake (snakeBody)
 			if (right)
