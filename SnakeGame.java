@@ -122,7 +122,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 					i++;
 					
 				}
-				else if(rand == 3 && increment > .5) //Good powerUp, decreases speed by 20%
+				else if(rand == 3 && increment > .7) //Good powerUp, decreases speed by 20%
 				{
 					increment -= .2;
 					powerUp.remove(0);
