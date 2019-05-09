@@ -178,7 +178,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
-		for (int i = 0; i < WIDTH / 10; i++)
+		for (int i = 0; i < WIDTAH / 10; i++)
 		{
 			g.drawLine(i * 10, 0, i * 10, HEIGHT);
 		}
@@ -212,8 +212,12 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 
 	public void stop()
 	{
+		f.dispose();
+		new MainMenu();
 		running = false;
-
+		
+		
+		
 		try
 		{
 			thread.join();
@@ -222,6 +226,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 			e.printStackTrace();
 			// running = false;
 		}
+		
 	}
 
 	public boolean getRunning()
