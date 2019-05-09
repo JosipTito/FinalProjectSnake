@@ -1,5 +1,4 @@
 import javax.swing.JPanel;
-import import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
