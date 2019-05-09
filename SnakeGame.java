@@ -82,11 +82,16 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 			poUp = new PowerUp(xCoor, yCoor, 10);
 			powerUp.add(poUp);
 		}
-			if (xCoord == apples.get(0).getXCoord() && yCoord == apples.get(0).getYCoord())
+
+		for (int i = 0; i < apples.size(); i++)
+		{
+			if (xCoord == apples.get(i).getXCoord() && yCoord == apples.get(i).getYCoord())
 			{
 				size+=2;
-				apples.remove(0);
+				apples.remove(i);
+				i++;
 			}
+		}
 
 		for (int i = 0; i < powerUp.size(); i++)
 		{
