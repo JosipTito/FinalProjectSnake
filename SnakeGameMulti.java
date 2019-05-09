@@ -268,7 +268,7 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 			if(up2)
 				yCoord2--;
 			if(down2)
-				yCoord++;
+				yCoord2++;
 
 			ticks = 0;
 			
@@ -391,17 +391,17 @@ public class SnakeGameMultiPlay extends JPanel implements Runnable, KeyListener
 		}
 		
 		//Second Snake (snakeBody2)
-		if(key == KeyEvent.VK_A && !left2)
-		{
-			up2 = false;
-			down2 = false;
-			right2 = true;
-		}
-		if(key == KeyEvent.VK_D && !right2)
+		if(key == KeyEvent.VK_A && !right2)
 		{
 			up2 = false;
 			down2 = false;
 			left2 = true;
+		}
+		if(key == KeyEvent.VK_D && !left2)
+		{
+			up2 = false;
+			down2 = false;
+			right2 = true;
 		}
 		if(key == KeyEvent.VK_W && !down2)
 		{
