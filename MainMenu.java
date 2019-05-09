@@ -49,12 +49,13 @@ public class MainMenu implements ActionListener {
 		
 		panel2 = new JPanel();
 		panel2.setSize(800,400);
-		panel2.setLayout(new GridLayout(1,1,0,0));
+		panel2.setLayout(new GridLayout(1,3,0,0));
 		panel2.setBackground(Color.DARK_GRAY);
 		title = new JLabel("Snake With a Twist");
 		title.setForeground(Color.WHITE);
+	
 		title.setFont(new Font("Magneto",Font.PLAIN,50));
-		panel2.add(title,BorderLayout.CENTER);
+		panel2.add(title);
 		
 		
 		
