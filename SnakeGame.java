@@ -82,16 +82,11 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 			poUp = new PowerUp(xCoor, yCoor, 10);
 			powerUp.add(poUp);
 		}
-
-		for (int i = 0; i < apples.size(); i++)
-		{
-			if (xCoord == apples.get(i).getXCoord() && yCoord == apples.get(i).getYCoord())
+			if (xCoord == apples.get(0).getXCoord() && yCoord == apples.get(0).getYCoord())
 			{
 				size+=2;
-				apples.remove(i);
-				i++;
+				apples.remove(0);
 			}
-		}
 
 		for (int i = 0; i < powerUp.size(); i++)
 		{
@@ -178,7 +173,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
-		for (int i = 0; i < WIDTAH / 10; i++)
+		for (int i = 0; i < WIDTH / 10; i++)
 		{
 			g.drawLine(i * 10, 0, i * 10, HEIGHT);
 		}
