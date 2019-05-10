@@ -5,7 +5,7 @@ public class FrameSinglePlay {
     public FrameSinglePlay() 
     {
         JFrame frame = new JFrame();
-        SnakeGameSinglePlay screen = new SnakeGameSinglePlay();
+        SnakeGame screen = new SnakeGame();
         
 
         frame.add(screen);
