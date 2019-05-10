@@ -16,7 +16,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 
 	private JFrame f;
 
-	public static final int WIDTH = 500, HEIGHT = 500;
+	public static final int WIDTH = 520, HEIGHT = 560;
 
 	private Thread thread;
 	private boolean running = false;
@@ -34,12 +34,12 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 
 	private int xCoord, yCoord;
 	private int size = 5;
+	private int appleCount;
 
 	private boolean right = true, left = false, up = false, down = false;
 
 	private double increment = 1;
 	private double ticks = 0;
-	private int appleCount;
 	
 
 	public SnakeGame()
@@ -52,7 +52,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 
 		r = new Random();
 		xCoord = r.nextInt(39);
-		yCoord = r.nextInt(39);
+		yCoord = r.nextInt(39) + 2;
 
 
 		snakeBody = new ArrayList<Body>();
@@ -140,7 +140,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 				}
 			}
 		}
-		if (xCoord < 0 || xCoord > 48 || yCoord < 0 || yCoord > 48)
+		if (xCoord < 3 || xCoord > 48 || yCoord < 3 || yCoord > 48)
 		{
 			stop();
 		}
@@ -173,10 +173,12 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 	public void paint(Graphics g)
 	{
 		g.clearRect(0, 0, WIDTH, HEIGHT);
-		g.setColor(Color.BLACK);
+		g.setColor(new Color(73, 94, 150));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.setColor(Color.BLACK);
+		g.fillRect(20, 20, WIDTH-40, HEIGHT-80);
 
-		for (int i = 0; i < WIDTH / 10; i++)
+		/*for (int i = 0; i < WIDTH / 10; i++)
 		{
 			g.drawLine(i * 10, 0, i * 10, HEIGHT);
 		}
@@ -188,7 +190,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 		for(int i = 0; i < WIDTH; i++)
 		{
 			
-		}
+		}*/
 
 		for (int i = 0; i < snakeBody.size(); i++)
 		{
