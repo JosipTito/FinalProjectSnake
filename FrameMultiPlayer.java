@@ -5,7 +5,7 @@ public class FrameMultiPlayer {
     public FrameMultiPlayer() 
     {
         JFrame frame = new JFrame();
-        SnakeGameMultiPlay screen = new SnakeGameMultiPlay();
+        SnakeGameMulti screen = new SnakeGameMulti();
         frame.add(screen);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Snake");
