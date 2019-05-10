@@ -178,14 +178,6 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 		g.setColor(Color.BLACK);
 		g.fillRect(20, 20, WIDTH-40, HEIGHT-80);
 
-		/*for (int i = 0; i < WIDTH / 10; i++)
-		{
-			g.drawLine(i * 10, 0, i * 10, HEIGHT);
-		}
-		for (int i = 0; i < HEIGHT / 10; i++)
-		{
-			g.drawLine(0, i * 10, WIDTH, i * 10);
-		}*/
 
 		for (int i = 0; i < snakeBody.size(); i++)
 		{
