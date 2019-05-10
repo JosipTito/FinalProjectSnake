@@ -51,8 +51,8 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 		r = new Random();
-		xCoord = r.nextInt(30) + 2;
-		yCoord = r.nextInt(39) + 2;
+		xCoord = r.nextInt(30) + 3;
+		yCoord = r.nextInt(30) + 3;
 
 
 		snakeBody = new ArrayList<Body>();
@@ -70,16 +70,16 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 		}
 		if (apples.size() == 0)
 		{
-			int xCoor = r.nextInt(48) + 2;
-			int yCoor = r.nextInt(48) + 2;
+			int xCoor = r.nextInt(46) + 3;
+			int yCoor = r.nextInt(46) + 3;
 
 			apple = new Apple(xCoor, yCoor, 10);
 			apples.add(apple);
 		}
 		if (powerUp.size() == 0)
 		{
-			int xCoor = r.nextInt(48) + 2;
-			int yCoor = r.nextInt(48) + 2;
+			int xCoor = r.nextInt(46) + 3;
+			int yCoor = r.nextInt(46) + 3;
 
 			poUp = new PowerUp(xCoor, yCoor, 10);
 			powerUp.add(poUp);
@@ -120,7 +120,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 					i++;
 					
 				}
-				else if(rand == 3 && increment > .5) //Good powerUp, decreases speed by 20%
+			    else if(rand == 3 && increment > .5) //Good powerUp, decreases speed by 20%
 				{
 					increment -= .15;
 					powerUp.remove(0);
