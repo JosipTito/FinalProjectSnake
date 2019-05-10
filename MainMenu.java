@@ -10,8 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-public class MainMenu implements ActionListener
-{
+public class MainMenu implements ActionListener {
     private JFrame f;
     private JButton singlePlay;
     private JButton multiPlay;
@@ -24,10 +23,10 @@ public class MainMenu implements ActionListener
         //Making the JFrame
         f = new JFrame("Main Menu");
         f.setSize(800, 800);
-        f.setLayout(new GridLayout(5,5,0,0));
+        f.setLayout(new GridLayout(5,0,0,0));
         f.setResizable(false);
         f.setLocationRelativeTo(null);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //Making the "Non-empty" JPanels
         panel1 = new JPanel();
         panel1.setSize(800,300);
@@ -61,26 +60,28 @@ public class MainMenu implements ActionListener
         title = new JLabel("Snake With a Twist");
         title.setForeground(Color.WHITE);
         
-        title.setFont(new Font("Magneto",Font.PLAIN,50));
+        title.setFont(new Font("Magneto",Font.PLAIN,70));
         panel2.add(title);
 
         //Adding  Panels to the JFrame to display
         f.add(panel1);
         
         //Creating and adding Empty panels
-        JPanel empty1, emptyBig;
+        JPanel empty1, empty2,empty3,empty4;
         empty1 = new JPanel();
         empty1.setBackground(Color.BLACK);
-        emptyBig = new JPanel();
-        emptyBig.setBackground(Color.BLACK);
-        emptyBig.setSize(200,500);
+        empty2 = new JPanel();
+        empty2.setBackground(Color.BLACK);
+        empty3 = new JPanel();
+        empty3.setBackground(Color.BLACK);
+        
         f.add(empty1);
         f.add(panel2);
-        f.add(emptyBig);
-        
+        f.add(empty2);
+        f.add(empty3);
         f.setVisible(true);
     }
-  public void actionPerformed(ActionEvent ae) {
+public void actionPerformed(ActionEvent ae) {
     String comStr = ae.getActionCommand();
    if(comStr.equals("Single-Player"))
    {
@@ -93,9 +94,8 @@ public class MainMenu implements ActionListener
 	   new FrameMultiPlayer();
    }
    else if(comStr.equals("Close"))
-   {
-	    System.exit(0);
-   }
+	   System.exit(0);
+   
    
    
   }
