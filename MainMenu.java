@@ -94,7 +94,7 @@ public class MainMenu implements ActionListener
    }
    else if(comStr.equals("Close"))
    {
-	   f.dispose();
+	    System.exit(0);
    }
    
    
