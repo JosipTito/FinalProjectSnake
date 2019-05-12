@@ -283,7 +283,7 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 	public void stop()
 	{
 		running = false;
-		new MainMenu();
+		new GameOverScreen();
 		try
 		{
 			thread.join();
