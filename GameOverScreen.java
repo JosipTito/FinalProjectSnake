@@ -18,10 +18,6 @@ public class GameOverScreen implements ActionListener
     private JPanel panel3;
     private JPanel panel4;
     private JPanel panel5;
-    private JPanel panel6;
-    private JPanel panel7;
-    private JPanel panel8;
-    private JPanel panel9;
     
     private JButton close;
     private JButton back;
