@@ -41,6 +41,8 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 	private double increment = 1;
 	private double ticks = 0;
 	
+	private long nanoSeconds;
+	
 
 	public SnakeGame()
 	{
@@ -54,7 +56,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 		xCoord = r.nextInt(30) + 3;
 		yCoord = r.nextInt(30) + 3;
 
-
+		
 		snakeBody = new ArrayList<Body>();
 		apples = new ArrayList<Apple>();
 		powerUp = new ArrayList<PowerUp>();
@@ -120,7 +122,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 					i++;
 					
 				}
-			    else if(rand == 3 && increment > .5) //Good powerUp, decreases speed by 20%
+			    else if(rand == 3 && increment > .7) //Good powerUp, decreases speed by 20%
 				{
 					increment -= .15;
 					powerUp.remove(0);
@@ -172,13 +174,16 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 
 	public void paint(Graphics g)
 	{
+		 
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 		g.setColor(new Color(73, 94, 150));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		g.setColor(Color.BLACK);
 		g.fillRect(20, 20, WIDTH-40, HEIGHT-80);
 
-
+		
+		statistics(g);
+		
 		for (int i = 0; i < snakeBody.size(); i++)
 		{
 			snakeBody.get(i).draw(g);
@@ -279,5 +284,15 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 	public int getSnakeSize()
 	{
 		return size;
+	}
+	
+	public void statistics(Graphics g)
+	{
+		nanoSeconds = System.nanoTime();
+		g.setColor(new Color(82, 232, 71));
+		g.drawString("Length: " + size, 20, 525 );
+		g.drawString("Apples Eaten: " + appleCount, 200, 525 );
+		//g.drawString("Time: " + (nanoSeconds / 1000000000 - 13460) , 200, 525 );
+		g.drawString("Speed: " + (int)(increment * 100) + "%", 400, 525);
 	}
 }
