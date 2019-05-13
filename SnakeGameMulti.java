@@ -12,7 +12,7 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 
 	private static final long serialVersionUID = 1L;
 
-	public static final int WIDTH = 500, HEIGHT = 500;
+	public static final int WIDTH = 520, HEIGHT = 560;
 
 	private Thread thread;
 	private boolean running = false;
@@ -48,8 +48,11 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 		r = new Random();
-		xCoord = r.nextInt(39);
-		yCoord = r.nextInt(39);
+		xCoord = r.nextInt(30) + 3;
+		yCoord = r.nextInt(30) + 3;
+		
+		xCoord2 = r.nextInt(30) + 3;
+		yCoord2 = r.nextInt(30) + 3;
 
 
 		snakeBody = new ArrayList<Body>();
@@ -73,16 +76,16 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 		}
 		if (apples.size() == 0)
 		{
-			int xCoor = r.nextInt(48);
-			int yCoor = r.nextInt(48);
+			int xCoor = r.nextInt(46) + 3;
+			int yCoor = r.nextInt(46) + 3;
 
 			apple = new Apple(xCoor, yCoor, 10);
 			apples.add(apple);
 		}
 		if (powerUp.size() == 0)
 		{
-			int xCoor = r.nextInt(48);
-			int yCoor = r.nextInt(48);
+			int xCoor = r.nextInt(46) + 3;
+			int yCoor = r.nextInt(46) + 3;
 
 			poUp = new PowerUp(xCoor, yCoor, 10);
 			powerUp.add(poUp);
@@ -182,13 +185,13 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 			}
 		}
 		
-		if (xCoord < 0 || xCoord > 48 || yCoord < 0 || yCoord > 48)
+		if (xCoord < 3 || xCoord > 48 || yCoord < 3 || yCoord > 48)
 		{
 			snake2Wins = true;
 			stop();
 		}
 		
-		if (xCoord2 < 0 || xCoord2 > 48 || yCoord2 < 0 || yCoord2 > 48)
+		if (xCoord2 < 3 || xCoord2 > 48 || yCoord2 < 3 || yCoord2 > 48)
 		{
 			snake1Wins = true;
 			stop();
@@ -241,17 +244,11 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 	public void paint(Graphics g)
 	{
 		g.clearRect(0, 0, WIDTH, HEIGHT);
-		g.setColor(Color.BLACK);
+		g.setColor(new Color(73, 94, 150));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.setColor(Color.BLACK);
+		g.fillRect(20, 20, WIDTH-40, HEIGHT-80);
 
-		for (int i = 0; i < WIDTH / 10; i++)
-		{
-			g.drawLine(i * 10, 0, i * 10, HEIGHT);
-		}
-		for (int i = 0; i < HEIGHT / 10; i++)
-		{
-			g.drawLine(0, i * 10, WIDTH, i * 10);
-		}
 
 		for (int i = 0; i < snakeBody.size(); i++)
 		{
