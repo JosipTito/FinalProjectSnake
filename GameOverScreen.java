@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -24,6 +25,7 @@ public class GameOverScreen implements ActionListener
     
     private JLabel gameText;
     private JLabel overText;
+    private JLabel winnerText;
     public GameOverScreen()
     {
         f = new JFrame("Snake - Game Over");
@@ -35,15 +37,47 @@ public class GameOverScreen implements ActionListener
         setPanels();
         setButtons();
         
+        
+        
         gameText = new JLabel("Game");
-        gameText.setFont(new Font("Magneto",Font.PLAIN,70));
+        gameText.setFont(new Font("San Serif",Font.BOLD,70));
         gameText.setForeground(Color.RED);
+        gameText.setHorizontalTextPosition(SwingConstants.CENTER);
         overText = new JLabel("Over");
-        overText.setFont(new Font("Magneto",Font.PLAIN,70));
+        overText.setFont(new Font("San Serif",Font.BOLD,70));
         overText.setForeground(Color.GRAY);
         panel4.add(gameText);
         panel4.add(overText);
         
+        f.add(panel1,BorderLayout.NORTH);
+        f.add(panel2,BorderLayout.EAST);
+        f.add(panel3,BorderLayout.WEST);
+        f.add(panel4,BorderLayout.CENTER);
+        f.add(panel5,BorderLayout.SOUTH);
+        
+        f.setVisible(true);
+    }
+    public GameOverScreen(String winner)
+    {
+        f = new JFrame("Snake - Game Over");
+        f.setSize(600,600);
+        f.setResizable(false);
+        f.setLocationRelativeTo(null);
+        f.setLayout(new BorderLayout());
+        
+        setPanels();
+        setButtons();
+        
+        gameText = new JLabel("Game");
+        gameText.setFont(new Font("San Serif",Font.BOLD,70));
+        gameText.setForeground(Color.RED);
+        
+        overText = new JLabel("Over");
+        overText.setFont(new Font("San Serif",Font.BOLD,70));
+        overText.setForeground(Color.GRAY);
+        panel4.add(gameText);
+        panel4.add(overText);
+        determineWinnerText(winner);
         f.add(panel1,BorderLayout.NORTH);
         f.add(panel2,BorderLayout.EAST);
         f.add(panel3,BorderLayout.WEST);
@@ -66,7 +100,7 @@ public class GameOverScreen implements ActionListener
         panel5 = new JPanel();
         panel5.setBackground(Color.BLACK);
         panel5.setLayout(new GridLayout(0,2,0,0));
-        panel5.setPreferredSize(new Dimension(600,200));
+        panel5.setPreferredSize(new Dimension(600,100));
     }
     private void setButtons()
     {
@@ -76,6 +110,16 @@ public class GameOverScreen implements ActionListener
         back.addActionListener(this);
         panel5.add(back);
         panel5.add(close);
+    }
+    private void determineWinnerText(String winner)
+    {
+    	winnerText = new JLabel(winner);
+    	if(winner.contains("Green"))
+    		winnerText.setForeground(Color.GREEN);
+    	else
+    		winnerText.setForeground(Color.BLUE);
+    	winnerText.setFont(new Font("San Serif",Font.BOLD,30));
+    	panel4.add(winnerText);
     }
     public void actionPerformed(ActionEvent ae)
     {
