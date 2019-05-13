@@ -26,6 +26,7 @@ public class GameOverScreen implements ActionListener
     private JLabel gameText;
     private JLabel overText;
     private JLabel winnerText;
+    private JLabel stats;
     public GameOverScreen()
     {
         f = new JFrame("Snake - Game Over");
@@ -36,7 +37,6 @@ public class GameOverScreen implements ActionListener
         
         setPanels();
         setButtons();
-        
         
         
         gameText = new JLabel("Game");
@@ -120,6 +120,10 @@ public class GameOverScreen implements ActionListener
     		winnerText.setForeground(Color.BLUE);
     	winnerText.setFont(new Font("San Serif",Font.BOLD,30));
     	panel4.add(winnerText);
+    }
+    private void setStats()
+    {
+    	
     }
     public void actionPerformed(ActionEvent ae)
     {
