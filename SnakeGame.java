@@ -3,6 +3,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -290,6 +291,8 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 	{
 		nanoSeconds = System.nanoTime();
 		g.setColor(new Color(82, 232, 71));
+		g.setFont(new Font("Georgia", 15, 16));
+		
 		g.drawString("Length: " + size, 20, 525 );
 		g.drawString("Apples Eaten: " + appleCount, 200, 525 );
 		//g.drawString("Time: " + (nanoSeconds / 1000000000 - 13460) , 200, 525 );
