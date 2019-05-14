@@ -12,9 +12,11 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 public class MainMenu implements ActionListener {
     private JFrame f;
+    
     private JButton singlePlay;
     private JButton multiPlay;
     private JButton exit;
+    private JButton howToPlay;
     private JPanel panel1;
     private JPanel panel2;
     private JLabel title;
@@ -31,25 +33,33 @@ public class MainMenu implements ActionListener {
         panel1 = new JPanel();
         panel1.setSize(800,300);
         panel1.setBackground(Color.BLACK);
-        panel1.setLayout(new GridLayout(0,3,0,0));
+        panel1.setLayout(new GridLayout(0,4,0,0));
         
         //Making "Single-Player" JButton.
         singlePlay = new JButton("Single-Player");
         singlePlay.addActionListener(this);
         singlePlay.setLayout(null);
-        
+        singlePlay.setFont(new Font("Serif",Font.PLAIN,25));
         //Making "Multi-Player" JButton.
         multiPlay = new JButton("Multi-Player");
         multiPlay.addActionListener(this);
         multiPlay.setLayout(null);
+        multiPlay.setFont(new Font("Serif",Font.PLAIN,25));
+        //Making "How to Play" JButton
+        howToPlay = new JButton("How to Play");
+        howToPlay.addActionListener(this);
+        howToPlay.setLayout(null);
+        howToPlay.setFont(new Font("Serif",Font.PLAIN,25));
         //Making "Close" JButton.
         exit = new JButton("Close");
         exit.addActionListener(this);
         exit.setLayout(null);
+        exit.setFont(new Font("Serif",Font.PLAIN,25));
         
         //Adding buttons to panel1
         panel1.add(singlePlay);
         panel1.add(multiPlay);
+        panel1.add(howToPlay);
         panel1.add(exit);
         f.add(panel1);
         //Making second non-empty panel
@@ -92,6 +102,11 @@ public void actionPerformed(ActionEvent ae) {
    {
 	   f.dispose();
 	   new FrameMultiPlayer();
+   }
+   else if(comStr.equals("How to Play"))
+   {
+	   f.dispose();
+	   new HowToPlay();
    }
    else if(comStr.equals("Close"))
 	   System.exit(0);
