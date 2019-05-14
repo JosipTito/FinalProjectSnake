@@ -106,8 +106,10 @@ public class GameOverScreen implements ActionListener
     {
         close = new JButton("Close");
         close.addActionListener(this);
+        close.setFont(new Font("Serif",Font.PLAIN,25));
         back = new JButton("Back");
         back.addActionListener(this);
+        back.setFont(new Font("Serif",Font.PLAIN,25));
         panel5.add(back);
         panel5.add(close);
     }
