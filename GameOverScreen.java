@@ -119,8 +119,10 @@ public class GameOverScreen implements ActionListener
     	winnerText = new JLabel(winner);
     	if(winner.contains("Green"))
     		winnerText.setForeground(Color.GREEN);
+    	else if(winner.contains("Blue"))
+    		winnerText.setForeground(Color.CYAN);
     	else
-    		winnerText.setForeground(Color.BLUE);
+    		winnerText.setForeground(Color.WHITE);
     	winnerText.setFont(new Font("San Serif",Font.BOLD,30));
     	panel4.add(winnerText);
     }
