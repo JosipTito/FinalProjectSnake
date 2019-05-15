@@ -77,7 +77,8 @@ public class HowToPlay implements ActionListener
 				+ "\nThe green snake is controlled by the arrow keys on your keyboard, and"
 				+ "\nthe blue snake is controlled by WASD keys. It is basically a fight to"
 				+ "\n the death and the surviving snake wins. You can either have an extremely fast game"
-				+ "\n or the game can be long by collecting lots of apples and power-ups.";
+				+ "\n or the game can be long by collecting lots of apples and power-ups."
+				+ "\n\n WARNING:: If you click two movement keys at once you will end up losing; so, avoid that if possible";
 		
 		desc = new JTextArea(description);
 		desc.setEditable(false);
