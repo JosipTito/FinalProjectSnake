@@ -1,7 +1,7 @@
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -250,8 +250,7 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 		g.setColor(Color.BLACK);
 		g.fillRect(20, 20, WIDTH-40, HEIGHT-80);
 
-		Statistics(g);
-		
+
 		for (int i = 0; i < snakeBody.size(); i++)
 		{
 			snakeBody.get(i).draw(g);
@@ -281,8 +280,10 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 
 	public void stop()
 	{
+		
 		running = false;
-		new GameOverScreen();
+		
+		new GameOverScreen(determineWinner());
 		try
 		{
 			thread.join();
@@ -291,7 +292,13 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 			e.printStackTrace();
 		}
 	}
-
+	private String determineWinner()
+	{
+		if(snake1Wins)
+			return "Green Snake Wins";
+		else
+			return "Blue Snake Wins";
+	}
 	public boolean getRunning()
 	{
 		return running;
@@ -374,22 +381,5 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 	public void keyTyped(KeyEvent arg0)
 	{
 
-	}
-	
-	public void Statistics(Graphics g)
-	{
-		String word = "";
-		if(size > size2)
-			word = "Green Snake";
-		else if(size2 > size)
-			word = "Blue Snake";
-		else
-			word = "Their length is equal";
-		
-		g.setFont(new Font("Hello", 15, 16));
-		g.setColor(new Color(82, 232, 71));
-		
-		g.drawString("Longer Snake: " + word, 200, 525);
-		
 	}
 }
