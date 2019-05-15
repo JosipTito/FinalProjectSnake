@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -26,8 +27,8 @@ public class GameOverScreen implements ActionListener
     private JLabel gameText;
     private JLabel overText;
     private JLabel winnerText;
-    private JLabel stats;
-    public GameOverScreen()
+    private JTextArea stats;
+    public GameOverScreen(int appleCount, int size, int i)
     {
         f = new JFrame("Snake - Game Over");
         f.setSize(600,600);
@@ -48,7 +49,7 @@ public class GameOverScreen implements ActionListener
         overText.setForeground(Color.GRAY);
         panel4.add(gameText);
         panel4.add(overText);
-        
+        setStats(appleCount,size,i);
         f.add(panel1,BorderLayout.NORTH);
         f.add(panel2,BorderLayout.EAST);
         f.add(panel3,BorderLayout.WEST);
@@ -123,9 +124,17 @@ public class GameOverScreen implements ActionListener
     	winnerText.setFont(new Font("San Serif",Font.BOLD,30));
     	panel4.add(winnerText);
     }
-    private void setStats()
+    private void setStats(int ac, int l, int p)
     {
     	
+    	stats = new JTextArea("Apples Eaten: "+ac +
+    						  "\nLength    : "+l +
+    						  "\nSpeed     : "+p);
+    	stats.setFont(new Font("Type Writer",Font.PLAIN,25));
+    	stats.setBackground(Color.BLACK);
+    	stats.setForeground(Color.GREEN);
+    	stats.setEditable(false);
+    	panel4.add(stats);
     }
     public void actionPerformed(ActionEvent ae)
     {
