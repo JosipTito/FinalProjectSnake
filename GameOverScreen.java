@@ -131,7 +131,7 @@ public class GameOverScreen implements ActionListener
     	
     	stats = new JTextArea("Apples Eaten: "+ac +
     						  "\nLength    : "+l +
-    						  "\nSpeed     : "+p);
+    						  "\nSpeed     : "+p + "%");
     	stats.setFont(new Font("Type Writer",Font.PLAIN,25));
     	stats.setBackground(Color.BLACK);
     	stats.setForeground(Color.GREEN);
