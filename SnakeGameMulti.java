@@ -2,6 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -197,6 +198,9 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 			snake1Wins = true;
 			stop();
 		}
+		
+		if(xCoord == xCoord2 && yCoord == yCoord2)
+			stop();
 
 		ticks+= increment;
 
@@ -297,8 +301,10 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 	{
 		if(snake1Wins)
 			return "Green Snake Wins";
-		else
+		else if(snake2Wins)
 			return "Blue Snake Wins";
+		else
+			return"It Was a Draw";
 	}
 	public boolean getRunning()
 	{
@@ -384,7 +390,7 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 
 	}
 	
-	public void Statistics(Graphics g)
+	public void statistics(Graphics g)
 	{
 		String word = "";
 		if(size > size2)
@@ -397,7 +403,7 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 		g.setFont(new Font("Hello", 15, 16));
 		g.setColor(new Color(82, 232, 71));
 		
-		g.drawString("Longer Snake: " + word, 200, 525);
+		g.drawString("Longer Snake: " + word, 150, 525);
 		
 	}
 }
