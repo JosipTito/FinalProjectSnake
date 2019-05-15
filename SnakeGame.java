@@ -210,7 +210,7 @@ public class SnakeGame extends JPanel implements Runnable, KeyListener
 	public void stop()
 	{
 		f.dispose();
-		new GameOverScreen();
+		new GameOverScreen(appleCount,size, (int)(increment * 100));
 		running = false;		
 		try
 		{
