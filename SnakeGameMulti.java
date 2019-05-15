@@ -250,7 +250,8 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 		g.setColor(Color.BLACK);
 		g.fillRect(20, 20, WIDTH-40, HEIGHT-80);
 
-
+		statistics(g);
+		
 		for (int i = 0; i < snakeBody.size(); i++)
 		{
 			snakeBody.get(i).draw(g);
@@ -381,5 +382,22 @@ public class SnakeGameMulti extends JPanel implements Runnable, KeyListener
 	public void keyTyped(KeyEvent arg0)
 	{
 
+	}
+	
+	public void Statistics(Graphics g)
+	{
+		String word = "";
+		if(size > size2)
+			word = "Green Snake";
+		else if(size2 > size)
+			word = "Blue Snake";
+		else
+			word = "Their length is equal";
+		
+		g.setFont(new Font("Hello", 15, 16));
+		g.setColor(new Color(82, 232, 71));
+		
+		g.drawString("Longer Snake: " + word, 200, 525);
+		
 	}
 }
