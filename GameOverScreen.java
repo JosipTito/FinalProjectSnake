@@ -20,9 +20,11 @@ public class GameOverScreen implements ActionListener
     private JPanel panel3;
     private JPanel panel4;
     private JPanel panel5;
-    
+   
     private JButton close;
     private JButton back;
+    private JButton tryAgain1;
+    private JButton tryAgain2;
     
     private JLabel gameText;
     private JLabel overText;
@@ -37,7 +39,7 @@ public class GameOverScreen implements ActionListener
         f.setLayout(new BorderLayout());
         
         setPanels();
-        setButtons();
+        setButtons1();
         
         
         gameText = new JLabel("Game");
@@ -67,8 +69,7 @@ public class GameOverScreen implements ActionListener
         f.setLayout(new BorderLayout());
         
         setPanels();
-        setButtons();
-        
+        setButtons2();
         gameText = new JLabel("Game");
         gameText.setFont(new Font("San Serif",Font.BOLD,70));
         gameText.setForeground(Color.RED);
@@ -100,10 +101,10 @@ public class GameOverScreen implements ActionListener
         panel4.setLayout(new GridLayout(4,0,0,0));
         panel5 = new JPanel();
         panel5.setBackground(Color.BLACK);
-        panel5.setLayout(new GridLayout(0,2,0,0));
+        panel5.setLayout(new GridLayout(0,3,0,0));
         panel5.setPreferredSize(new Dimension(600,100));
     }
-    private void setButtons()
+    private void setButtons1()
     {
         close = new JButton("Close");
         close.addActionListener(this);
@@ -112,6 +113,25 @@ public class GameOverScreen implements ActionListener
         back.addActionListener(this);
         back.setFont(new Font("Serif",Font.PLAIN,25));
         panel5.add(back);
+        tryAgain1 = new JButton("Play Again!");
+        tryAgain1.addActionListener(this);
+        tryAgain1.setFont(new Font("Serif",Font.PLAIN,25));
+        panel5.add(tryAgain1);
+        panel5.add(close);
+    }
+    private void setButtons2()
+    {
+        close = new JButton("Close");
+        close.addActionListener(this);
+        close.setFont(new Font("Serif",Font.PLAIN,25));
+        back = new JButton("Back");
+        back.addActionListener(this);
+        back.setFont(new Font("Serif",Font.PLAIN,25));
+        panel5.add(back);
+        tryAgain2 = new JButton("Play Again!!");
+        tryAgain2.addActionListener(this);
+        tryAgain2.setFont(new Font("Serif",Font.PLAIN,25));
+        panel5.add(tryAgain2);
         panel5.add(close);
     }
     private void determineWinnerText(String winner)
@@ -129,9 +149,9 @@ public class GameOverScreen implements ActionListener
     private void setStats(int ac, int l, int p)
     {
     	
-    	stats = new JTextArea("Apples Eaten: "+ac +
+    	stats = new JTextArea("Apples Eaten: "+ac +	
     						  "\nLength    : "+l +
-    						  "\nSpeed     : "+p + "%");
+    						  "\nSpeed     : "+p+"%");
     	stats.setFont(new Font("Type Writer",Font.PLAIN,25));
     	stats.setBackground(Color.BLACK);
     	stats.setForeground(Color.GREEN);
@@ -147,6 +167,15 @@ public class GameOverScreen implements ActionListener
         }
         else if(ae.getActionCommand().equals("Close"))
             System.exit(0);
-        
+        else if(ae.getActionCommand().equals("Play Again!"))
+        {
+        	f.dispose();
+        	new FrameSinglePlay();
+        }
+        else if(ae.getActionCommand().equals("Play Again!!"))
+        {
+        	f.dispose();
+        	new FrameMultiPlayer();
+        }
     }
 }
